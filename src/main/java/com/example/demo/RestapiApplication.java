@@ -8,7 +8,8 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import com.example.controller.TodoController;
 import com.example.demo.repository.ToDoRepository;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages={
+		"com.example.controller", "com.example.demo", "com.example.demo.repository", "com.example.model"})
 @ComponentScan(basePackageClasses = TodoController.class)
 @EnableMongoRepositories(basePackageClasses = ToDoRepository.class)
 
