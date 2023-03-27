@@ -1,30 +1,17 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Log') {
       steps {
-        sh '''pipeline {
-    agent any
-
-    stages {
-        stage(\'Log\') {
-            steps {
-                echo \'Hello World\'
-            }
-        }
-}'''
-          sh '''pipeline {
-    agent any
-
-    stages {
-        stage(\'Build\') {
-            steps {
-                echo \'Building..\'
-            }
-        }
-}'''
-          }
-        }
-
+        sh 'echo "Hello World"'
       }
     }
+
+    stage('Build') {
+      steps {
+        sh 'docker build -t apisimage .'
+      }
+    }
+
+  }
+}
