@@ -1,11 +1,10 @@
-pipeline {
-  agent { dockerfile true }
-  stages {
-    stage('Build') {
-      steps {
-        sh 'docker build -t apisimage .'
-      }
+pipeline { 
+    agent any  
+    stages { 
+        stage('Build') { 
+            steps { 
+               echo 'This is a minimal pipeline.' 
+            }
+        }
     }
-
-  }
 }
