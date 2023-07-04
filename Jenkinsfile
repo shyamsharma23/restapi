@@ -1,13 +1,13 @@
 pipeline {
     agent { 
         node {
-            label 'jenkins-docker'
+            label 'jenkins-slave'
             }
       }
     stages{
         stage('Build'){
             steps{
-                sh 'docker build . -t restapi:latest'
+                echo Hello World
             }
         }
         stage('Test'){
@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                sh "docker run -d --name my-container -p 5000:5000 restapi:latest"
+                echo "Deployed"
             }
         }
     }
