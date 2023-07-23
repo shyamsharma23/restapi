@@ -21,9 +21,15 @@ pipeline {
     }
 
     stage('Package') {
+      agent {
+        node {
+          label 'agent1'
+        }
+
+      }
       steps {
         echo 'Deployed'
-        archiveArtifacts 'S3'
+        archiveArtifacts(artifacts: 'target/*.jar', allowEmptyArchive: true)
       }
     }
 
