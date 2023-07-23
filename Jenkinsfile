@@ -6,21 +6,31 @@ pipeline {
 
   }
   stages {
-    stage('Build') {
+    stage('Clone') {
       steps {
-        echo 'Hello World'
+        git(url: 'https://github.com/shyamsharma23/restapi-1.0', branch: 'api', poll: true)
       }
     }
 
-    stage('Test') {
+    stage('Build') {
       steps {
-        echo 'Testing'
+        echo 'Building'
+        sh 'mvn -Dmaven.test.failure.ignore=true clean package'
+        tool 'M3'
+      }
+    }
+
+    stage('Package') {
+      steps {
+        echo 'Deployed'
+        archiveArtifacts 'S3'
       }
     }
 
     stage('Deploy') {
       steps {
-        echo 'Deployed'
+        sh '''cd target
+java -jar demo-0.0.1-SNAPSHOT.jar'''
       }
     }
 
