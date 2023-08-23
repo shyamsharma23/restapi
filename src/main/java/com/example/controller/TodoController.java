@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.repository.ToDoRepository;
 import com.example.model.Todo;
 
-@CrossOrigin(origins = "http://127.0.0.1:5173/")
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1")
 public class TodoController {
@@ -75,7 +75,7 @@ public class TodoController {
 		}
 	}
 	
-	@CrossOrigin(origins = "http://127.0.0.1:5173/")
+	@CrossOrigin
 	@DeleteMapping("todos/{id}")
 	public ResponseEntity<?> deleteTodoById(@PathVariable("id") String id){
 		Optional<Todo> item = repo.findById(id);
